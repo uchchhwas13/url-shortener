@@ -3,4 +3,4 @@ const {handleGenerateNewShortUrl} = require('../controllers/url');
 const router = express.Router();
 
 router.post('/', handleGenerateNewShortUrl);
-model.exports = router;
+module.exports = router;
