@@ -23,7 +23,7 @@ app.get('/list', async (req, res) => {
     <body>
     <h1>List of URLs</h1>
     <ol>
-      ${urls.map((url) => `<li>${url.shortId}" - ${url.requiredUrl}</li>`).join(' ')}
+      ${urls.map((url) => `<li>${url.shortId}" - ${url.requiredUrl} ${url.visitHistory.length}</li>`).join(' ')}
     </ol>
     </body>
     </html>
