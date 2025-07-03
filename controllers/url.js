@@ -12,7 +12,7 @@ async function handleGenerateNewShortUrl(req, res) {
     visitHistory: [],
   });
 
-  return res.status(201).json({
+  return res.render('home', {
     shortId: shortID,
   });
 }
@@ -46,5 +46,5 @@ async function handleGetAnalytics(req, res) {
 module.exports = {
   handleGenerateNewShortUrl,
   handleGetAnalytics,
-  handleRedirect
+  handleRedirect,
 };
