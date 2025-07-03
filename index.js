@@ -9,6 +9,7 @@ const port = 8000;
 
 connectToDatabase('mongodb://localhost:27017/short-url');
 
+app.set('view engine', 'ejs');
 app.use(express.json());
 app.use('/url', urlRoute);
 
