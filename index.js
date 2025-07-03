@@ -18,19 +18,7 @@ app.use('/url', urlRoute);
 app.get('/list', async (req, res) => {
   const urls = await URL.find({});
   console.log('List of URLs:', urls);
-  return res.send(`
-    <html>
-    <head>
-      <title>URL Shortener</title>
-    </head>
-    <body>
-    <h1>List of URLs</h1>
-    <ol>
-      ${urls.map((url) => `<li>${url.shortId}" - ${url.requiredUrl} ${url.visitHistory.length}</li>`).join(' ')}
-    </ol>
-    </body>
-    </html>
-  `);
+  return res.render("home");
 });
 
 app.listen(port, () =>
