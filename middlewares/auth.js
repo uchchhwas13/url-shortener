@@ -4,7 +4,7 @@ const { getUser } = require('../service/auth');
  * If the user is not logged in, they will be redirected to the login page.
  */
 async function restrictToLoggedInUserOnly(req, res, next) {
-  const userUid = req.cookies.uid;
+  const userUid = req.cookies?.uid;
   if (!userUid) return res.redirect('/login');
   const user = await getUser(userUid);
   if (!user) return res.redirect('/login');
