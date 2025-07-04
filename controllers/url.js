@@ -8,8 +8,9 @@ async function handleGenerateNewShortUrl(req, res) {
   const shortID = nanoid(8);
   await URL.create({
     shortId: shortID,
-    requiredUrl: req.body.url,
+    redirectUrl: req.body.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
 
   return res.render('home', {
@@ -27,7 +28,7 @@ async function handleRedirect(req, res) {
       },
     }
   );
-  res.redirect(entry.requiredUrl);
+  res.redirect(entry.redirectUrl);
 }
 
 async function handleGetAnalytics(req, res) {
