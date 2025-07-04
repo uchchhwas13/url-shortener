@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const { connectToDatabase } = require('./connection');
 const URL = require('./models/url');
 
 const app = express();
 const port = 8000;
+
 // Import routes
 const urlRoute = require('./routes/url');
 const staticRoute = require('./routes/staticRouter');
@@ -21,6 +23,7 @@ app.set('views', path.resolve('./views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use('/url', urlRoute);
 app.use('/', staticRoute);
