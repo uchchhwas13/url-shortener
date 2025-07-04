@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
-const urlRoute = require('./routes/url');
-const staticRoute = require('./routes/staticRouter');
 const { connectToDatabase } = require('./connection');
 const URL = require('./models/url');
 
 const app = express();
 const port = 8000;
+// Import routes
+const urlRoute = require('./routes/url');
+const staticRoute = require('./routes/staticRouter');
+const userRoute = require('./routes/user');
 
 // Connect to MongoDB
 connectToDatabase('mongodb://localhost:27017/short-url');
@@ -22,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/url', urlRoute);
 app.use('/', staticRoute);
+app.use('/user', userRoute);
 
 app.get('/list', async (req, res) => {
   const urls = await URL.find({});
