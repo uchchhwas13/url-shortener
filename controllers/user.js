@@ -3,8 +3,8 @@ const User = require('../models/user');
 async function handleUserSignup(req, res) {
     const { name, email, password } = req.body;
     
-    if (!username || !password || !email) {
-        return res.status(400).json({ error: 'Username, password and email are required' });
+    if (!name || !password || !email) {
+        return res.status(400).json({ error: 'Nme, password and email are required' });
     }
     
     await User.create({
