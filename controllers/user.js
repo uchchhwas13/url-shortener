@@ -14,7 +14,7 @@ async function handleUserSignup(req, res) {
     email: email,
     password: password,
   });
-  return res.ridirect('/');
+  return res.redirect('/');
 }
 
 async function handleUserLogin(req, res) {
@@ -25,7 +25,7 @@ async function handleUserLogin(req, res) {
       error: 'Invalid email or password',
     });
   }
-  return res.ridirect('/');
+  return res.redirect('/');
 }
 
 module.exports = {
