@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const { connectToDatabase } = require('./connection');
-const {restrictToLoggedInUserOnly} = require('./middlewares/auth');
+const {restrictToLoggedInUserOnly, checkAuthentication} = require('./middlewares/auth');
 const URL = require('./models/url');
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/url', restrictToLoggedInUserOnly, urlRoute);
-app.use('/', staticRoute);
+app.use('/', checkAuthentication, staticRoute);
 app.use('/user', userRoute);
 
 app.get('/list', async (req, res) => {
