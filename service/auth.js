@@ -11,8 +11,14 @@ function setUser(user) {
 
 function getUser(token) {
     console.log('Token received:', token);
+    
     if(!token) return null;
-    return jwt.verify(token, secret);
+    try {
+        return jwt.verify(token, secret);
+    }catch (error) {
+        console.error('Error verifying token:', error);
+        return null;
+    }
 }   
 
 module.exports = {
