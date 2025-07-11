@@ -15,7 +15,7 @@ async function handleGenerateNewShortUrl(req, res) {
     createdBy: req.user._id,
   });
   const allUrls = await URL.find({ createdBy: req.user._id });
-  console.log('All URLs for user:', allUrls);
+  //console.log('All URLs for user:', allUrls);
   return res.render('home', {
     shortId: shortID,
     urls: allUrls
@@ -24,6 +24,7 @@ async function handleGenerateNewShortUrl(req, res) {
 
 async function handleRedirect(req, res) {
   const shortId = req.params.shortId;
+  console.log('Redirecting for shortId:', shortId);
   const entry = await URL.findOneAndUpdate(
     { shortId: shortId },
     {
@@ -32,7 +33,7 @@ async function handleRedirect(req, res) {
       },
     }
   );
-  console.log('Redirecting to:', entry);
+  //console.log('Redirecting to:', entry.redirectUrl);
   res.redirect(entry.redirectUrl);
 }
 
